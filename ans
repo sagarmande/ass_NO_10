@@ -1,0 +1,30 @@
+Q1. The main difference between `__getattr__` and `__getattribute__` in Python lies in the timing and scope of their invocation:
+
+- `__getattr__`: This method is invoked when an attempt is made to access an attribute that does not exist in the usual way (i.e., it is not found in the object's namespace). It is only called when the attribute is not found through normal attribute lookup. This means it is a "fallback" method for attribute access errors.
+
+- `__getattribute__`: This method is called every time an attribute is accessed on an object, regardless of whether the attribute exists or not. It is called for all attribute accesses, both existing and non-existing, which makes it a more general method for intercepting attribute access.
+
+In summary, `__getattr__` is specifically for handling attribute access errors, while `__getattribute__` is a general method that intercepts all attribute accesses.
+
+Q2. Properties and descriptors are both mechanisms in Python for controlling attribute access, but they differ in their level of complexity and use cases:
+
+- Properties: Properties are a simpler and more common way to control attribute access. They allow you to define getter and setter methods using the `@property` and `@<attribute>.setter` decorators. Properties are typically used when you want to add custom behavior to attribute access or assignment without changing the class's interface. Properties are often associated with a single attribute and are defined on a per-attribute basis.
+
+- Descriptors: Descriptors provide a more advanced and general mechanism for controlling attribute access. A descriptor is an object with methods like `__get__`, `__set__`, and `__delete__`, which allow you to customize attribute access, assignment, and deletion at a class level. Descriptors are used when you want to share the same behavior across multiple attributes in a class or when you need more fine-grained control over attribute access. They can be reused across multiple attributes.
+
+Q3. Here are the key differences in functionality between `__getattr__` and `__getattribute__`, as well as properties and descriptors:
+
+- `__getattr__` vs. `__getattribute__`:
+  - `__getattr__` is only invoked when an attribute is not found through normal attribute lookup, making it suitable for handling attribute access errors.
+  - `__getattribute__` is called for all attribute accesses (existing and non-existing), allowing for more general attribute access interception.
+  - You typically use `__getattr__` for custom error handling or dynamic attribute creation.
+  - `__getattribute__` is used when you want to intercept and customize all attribute accesses.
+
+- Properties vs. Descriptors:
+  - Properties are a simpler way to customize attribute access and are defined using decorators like `@property`.
+  - Properties are often associated with a single attribute and allow you to define custom behavior for getting or setting that attribute.
+  - Descriptors provide a more general mechanism for controlling attribute access, allowing you to share behavior across multiple attributes.
+  - Descriptors are implemented as separate classes with `__get__`, `__set__`, and `__delete__` methods.
+  - Properties are typically used for straightforward attribute access customization, while descriptors are used for more complex cases or when behavior needs to be shared among multiple attributes.
+
+In summary, `__getattr__` and `__getattribute__` are methods for intercepting attribute access, with `__getattribute__` being more general, while properties and descriptors are mechanisms for customizing attribute access, with descriptors being more powerful and flexible. The choice between them depends on the specific requirements of your code and the level of control you need over attribute access.
